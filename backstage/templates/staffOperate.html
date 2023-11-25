@@ -1,0 +1,163 @@
+{% extends 'BackStagelayout.html' %}
+{% load static %}
+
+{% block title %}
+    分公司管理
+{% endblock %}
+
+{% block slider %}
+    <!-- Page Sidebar -->
+    <div class="page-sidebar">
+        <a class="logo-box" href="/backstage/statistic/time">
+            <span>快递后台管理</span>
+            <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+            <i class="icon-close" id="sidebar-toggle-button-close"></i>
+        </a>
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon icon-flash_on"></i><span>综合统计</span><i
+                                class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="/backstage/statistic/time">按时间统计</a></li>
+                            <li><a href="/backstage/statistic/company">按分公司统计</a></li>
+                            <li><a href="/backstage/statistic/station">按分站统计</a></li>
+                            <li><a href="/backstage/statistic/staff">按快递员统计</a></li>
+                        </ul>
+                    </li>
+                    <li class="active-page">
+                        <a href="/backstage/company/">
+                            <i class="menu-icon icon-home"></i><span>分公司管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/station/">
+                            <i class="menu-icon icon-home2"></i><span>分站管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/staff/">
+                            <i class="menu-icon icon-person"></i><span>快递员管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/getPack/">
+                            <i class="menu-icon icon-add_box"></i><span>揽件管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/deliverPack/">
+                            <i class="menu-icon icon-send"></i><span>发货管理</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div><!-- /Page Sidebar -->
+{% endblock %}
+
+{% block PageContent %}
+    <!-- Page Content -->
+    <div class="page-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="logo-sm">
+                            <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="dropdown-toggle navbar-toggle">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <p>{{ admin_name }}</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/backstage/adminLogout/">登出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <h4>欢迎你：{{ admin_name }}</h4>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/backstage/adminLogout/">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div><!-- /Page Header -->
+        <!-- Page Inner -->
+        <div class="page-inner cd-container no-page-title">
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+                                <div class="panel-heading clearfix">
+                                    <h4 class="panel-title">新增分公司</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group ">
+                                            <input type="text" hidden value="{{ id }}" name="id" id="id">
+                                            <label for="city">所在城市</label>
+                                            <select style="margin-bottom:15px;" class="form-control" id="city"
+                                                    name="city">
+                                                {% for province in provinces %}
+                                                    <option value="{{ province }}"
+                                                            {% if selected_province == province %}selected{% endif %}>{{ province }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">分公司名称</label>
+                                            <input type="text" class="form-control" id="name"
+                                                   name="name" placeholder="分公司名称"
+                                                   value="{% if name %}{{ name }}{% endif %}" required>
+                                        </div>
+                                        {% if error %}
+                                            <p style="color: #8b211e;font-size: 12px;">{{ error }}</p>
+                                        {% endif %}
+                                        <div class="company_add_form">
+                                            <div style="max-width: 200px; margin: 0 auto;">
+                                                <button type="submit" class="btn btn-primary">提 &nbsp;&nbsp; 交
+                                                </button>
+                                                <a href="/backstage/company/" class="btn btn-default">取 &nbsp;&nbsp;
+                                                    消</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
+            </div><!-- /Page Content -->
+        </div>
+    </div>
+{% endblock %}

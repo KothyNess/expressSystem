@@ -1,0 +1,233 @@
+{% extends 'BackStagelayout.html' %}
+{% load static %}
+
+{% block title %}
+    快递员 — 新增
+{% endblock %}
+
+{% block slider %}
+    <!-- Page Sidebar -->
+    <div class="page-sidebar">
+        <a class="logo-box" href="/backstage/statistic/time">
+            <span>快递后台管理</span>
+            <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+            <i class="icon-close" id="sidebar-toggle-button-close"></i>
+        </a>
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon icon-flash_on"></i><span>综合统计</span><i
+                                class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="/backstage/statistic/time">按时间统计</a></li>
+                            <li><a href="/backstage/statistic/company">按分公司统计</a></li>
+                            <li><a href="/backstage/statistic/station">按分站统计</a></li>
+                            <li><a href="/backstage/statistic/staff">按快递员统计</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/backstage/company/">
+                            <i class="menu-icon icon-home"></i><span>分公司管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/station/">
+                            <i class="menu-icon icon-home2"></i><span>分站管理</span>
+                        </a>
+                    </li>
+                    <li class="active-page">
+                        <a href="/backstage/staff/">
+                            <i class="menu-icon icon-person"></i><span>快递员管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/getPack/">
+                            <i class="menu-icon icon-add_box"></i><span>揽件管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/deliverPack/">
+                            <i class="menu-icon icon-send"></i><span>发货管理</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div><!-- /Page Sidebar -->
+{% endblock %}
+
+{% block PageContent %}
+    <!-- Page Content -->
+    <div class="page-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="logo-sm">
+                            <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="dropdown-toggle navbar-toggle">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <p>{{ admin_name }}</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/backstage/adminLogout/">登出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <h4>欢迎你：{{ admin_name }}</h4>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/backstage/adminLogout/">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div><!-- /Page Header -->
+        <!-- Page Inner -->
+        <div class="page-inner cd-container no-page-title">
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-white">
+                            <div class="panel-body">
+                                <div class="panel-heading clearfix">
+                                    <h4 class="panel-title">新增快递员</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="text" hidden value="{{ id }}" name="id" id="id">
+                                        <div class="form-group ">
+                                            <label for="company">所属分公司</label>
+                                            <select style="margin-bottom:15px;" class="form-control" id="company"
+                                                    name="company">
+                                                {% for company in companies %}
+                                                    <option value="{{ company.id }}"
+                                                            {% if selected_company == company.id %}selected{% endif %}>{{ company.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="station">所属分站</label>
+                                            <select style="margin-bottom:15px;" class="form-control" id="station"
+                                                    name="station">
+                                                {% for station in stations %}
+                                                    <option value="{{ station.id }}"
+                                                            {% if selected_station == station.id %}selected{% endif %}>{{ station.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="staff_name">快递员姓名</label>
+                                            <input type="text" class="form-control" id="staff_name"
+                                                   name="staff_name" placeholder="快递员姓名"
+                                                   value="{% if staff_name %}{{ staff_name }}{% endif %}"
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="staff_username">快递员账号</label>
+                                            <input type="text" class="form-control" id="staff_username"
+                                                   name="staff_username" placeholder="快递员账号"
+                                                   value="{% if staff_username %}{{ staff_username }}{% endif %}"
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="staff_passwd">快递员密码</label>
+                                            <input type="text" class="form-control" id="staff_passwd"
+                                                   name="staff_passwd" placeholder="快递员账号的密码"
+                                                   value="{% if staff_passwd %}{{ staff_passwd }}{% endif %}" required>
+                                        </div>
+
+                                        {% if error %}
+                                            <p style="color: #8b211e;font-size: 12px;">{{ error }}</p>
+                                        {% endif %}
+                                        <div class="company_add_form">
+                                            <div style="max-width: 200px; margin: 0 auto;">
+                                                <button type="submit" class="btn btn-primary">提 &nbsp;&nbsp; 交
+                                                </button>
+                                                <a href="/backstage/staff/" class="btn btn-default">取 &nbsp;&nbsp;
+                                                    消</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
+            </div><!-- /Page Content -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+
+            var selected_station = "{{ selected_station }}"; // 假设从后端获取
+
+            function getStations(companyId) {
+                $.ajax({
+                    url: '/get_stations/',
+                    data: {
+                        'company': companyId
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var select = $("#station");
+                        select.empty();
+                        $.each(data, function (index, value) {
+                            var option = $('<option></option>').attr('value', value.id).text(value.name);
+
+                            // 这里加入逻辑来判断哪个选项应该被选中
+                            if (selected_station == value.id) {
+                                option.attr('selected', 'selected');
+                            }
+
+                            select.append(option);
+                        });
+                    }
+                });
+            }
+
+            var initialCompanyId = $("#company").val();
+            if (initialCompanyId !== null && initialCompanyId !== undefined) {
+                getStations(initialCompanyId);
+            }
+
+            $("#company").change(function () {
+                var companyId = $(this).val();
+                if (companyId !== null && companyId !== undefined) {
+                    getStations(companyId);
+                }
+            });
+        });
+    </script>
+{% endblock %}

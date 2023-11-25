@@ -1,0 +1,119 @@
+﻿@font-face {
+  font-family: 'flaticon';
+  src:  url('../fonts/flaticon.eot');
+  src:  url('../fonts/flaticon.eot') format('embedded-opentype'),
+    url('../fonts/flaticon.ttf') format('truetype'),
+    url('../fonts/flaticon.woff') format('woff'),
+    url('../fonts/flaticon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'flaticon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-on-time2:before {
+  content: "\e91b";
+}
+.flaticon-truck:before {
+  content: "\e91c";
+}
+.flaticon-ship2:before {
+  content: "\e91d";
+}
+.flaticon-phone-circle:before {
+  content: "\e91a";
+}
+.flaticon-person:before {
+  content: "\e913";
+}
+.flaticon-share:before {
+  content: "\e914";
+}
+.flaticon-customer-service:before {
+  content: "\e915";
+}
+.flaticon-plane-solid:before {
+  content: "\e916";
+}
+.flaticon-home:before {
+  content: "\e917";
+}
+.flaticon-clock:before {
+  content: "\e918";
+}
+.flaticon-pin:before {
+  content: "\e919";
+}
+.flaticon-envelope:before {
+  content: "\e911";
+}
+.flaticon-transportation:before {
+  content: "\e912";
+}
+.flaticon-air-transport:before {
+  content: "\e900";
+}
+.flaticon-box:before {
+  content: "\e901";
+}
+.flaticon-branch:before {
+  content: "\e902";
+}
+.flaticon-delivery-box:before {
+  content: "\e903";
+}
+.flaticon-down-arrow:before {
+  content: "\e904";
+}
+.flaticon-food-delivery:before {
+  content: "\e905";
+}
+.flaticon-happiness:before {
+  content: "\e906";
+}
+.flaticon-headphones:before {
+  content: "\e907";
+}
+.flaticon-home-delivery:before {
+  content: "\e908";
+}
+.flaticon-on-time:before {
+  content: "\e909";
+}
+.flaticon-phone:before {
+  content: "\e90a";
+}
+.flaticon-plane:before {
+  content: "\e90b";
+}
+.flaticon-quotation-mark1:before {
+  content: "\e90c";
+}
+.flaticon-quotation-mark2:before {
+  content: "\e90d";
+}
+.flaticon-ship:before {
+  content: "\e90e";
+}
+.flaticon-warehouse:before {
+  content: "\e90f";
+}
+.flaticon-world:before {
+  content: "\e910";
+}
+
+

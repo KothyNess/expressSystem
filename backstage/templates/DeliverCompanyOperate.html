@@ -1,0 +1,253 @@
+{% extends 'BackStagelayout.html' %}
+{% load static %}
+
+{% block title %}
+    综合统计 - 按时间
+{% endblock %}
+
+{% block slider %}
+    <!-- Page Sidebar -->
+    <div class="page-sidebar">
+        <a class="logo-box" href="statistic.html">
+            <span>快递后台管理</span>
+            <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+            <i class="icon-close" id="sidebar-toggle-button-close"></i>
+        </a>
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li class="active">
+                        <a href="/backstage/staff/delivery/">
+                            <i class="menu-icon icon-send"></i><span>发货管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- /Page Sidebar -->
+{% endblock %}
+
+{% block PageContent %}
+    <!-- Page Content -->
+    <div class="page-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="logo-sm">
+                            <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="dropdown-toggle navbar-toggle">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <p>{{ staff_info.name }}</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/backstage/staffLogout/">登出</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <h4>欢迎你：{{ staff_info.name }}</h4>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/backstage/staffLogout/">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div><!-- /Page Header -->
+        <!-- Page Inner -->
+        <div class="page-inner">
+            <div class="page-title">
+                <h3 class="breadcrumb-header">综合统计</h3>
+            </div>
+            <div id="main-wrapper">
+                <!-- altogether statistic -->
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ get_parcel_count }}</span>
+                                    <p class="stats-info">待收快递数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-person stats-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ deliver_parcel_count }}</span>
+                                    <p class="stats-info">待送快递数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-check_box stats-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
+                <!-- table -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix" style="position:relative ">
+                                <h4 class="panel-title">待收件信息</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive invoice-table">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>快递单号</th>
+                                            <th>包裹物品</th>
+                                            <th>目的地</th>
+                                            <th>重量</th>
+                                            <th>收货人</th>
+                                            <th>发货人</th>
+                                            <th>价格</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for pack in pages_get %}
+                                            <tr>
+                                                <th scope="row">{{ pack.parcel.timestamp }}</th>
+                                                <td>{{ pack.parcel.object_name }}</td>
+                                                <td>{{ pack.parcel.destination_station.name }}</td>
+                                                <td>{{ pack.parcel.weight }}</td>
+                                                <td>{{ pack.parcel.recipient.username }}</td>
+                                                <td>{{ pack.parcel.user.username }}</td>
+                                                <td>{{ pack.parcel.Price }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-xs"
+                                                       href="/backstage/staff/get_success/{{ pack.parcel.timestamp }}/">接收</a>
+                                                    <a class="btn btn-danger btn-xs"
+                                                       href="/backstage/staff/send_back/{{ pack.parcel.timestamp }}/"
+                                                       onclick="return confirm('确定要退回么?')">退回</a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <span class="step-links">
+                                            {% if pages_get.has_previous %}
+                                                <a href="?page=1" class="btn btn-default">&laquo; 首页</a>
+                                                <a href="?page={{ pages_get.previous_page_number }}"
+                                                   class="btn btn-default">上一页</a>
+                                            {% endif %}
+                                            <a class="btn btn-default active" href="?page={{ pages_get.number }}">
+                                                第 {{ pages_get.number }} 页，共 {{ pages_get.paginator.num_pages }} 页
+                                            </a>
+                                            {% if pages_get.has_next %}
+                                                <a class="btn btn-default"
+                                                   href="?page={{ pages_get.next_page_number }}">下一页</a>
+                                                <a class="btn btn-default" href="?page={{ pages_get.paginator.num_pages }}">末页 &raquo;</a>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
+                <!-- table -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix" style="position:relative ">
+                                <h4 class="panel-title">待派送信息</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive invoice-table">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>快递单号</th>
+                                            <th>包裹物品</th>
+                                            <th>目的地</th>
+                                            <th>重量</th>
+                                            <th>收货人</th>
+                                            <th>发货人</th>
+                                            <th>价格</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for pack in pages_delivery %}
+                                            <tr>
+                                                <th scope="row">{{ pack.parcel.timestamp }}</th>
+                                                <td>{{ pack.parcel.object_name }}</td>
+                                                <td>{{ pack.parcel.destination_station.name }}</td>
+                                                <td>{{ pack.parcel.weight }}</td>
+                                                <td>{{ pack.parcel.recipient.username }}</td>
+                                                <td>{{ pack.parcel.user.username }}</td>
+                                                <td>{{ pack.parcel.Price }}</td>
+                                                <td>
+                                                    {% if pack.status == '103'%}
+                                                        <a class="btn btn-primary btn-xs"
+                                                       href="/backstage/staff/deliver_success/{{ pack.parcel.timestamp }}/">开始派送</a>
+                                                    {% endif %}
+                                                    {% if pack.status == '104'%}
+                                                        <a class="btn btn-primary btn-xs"
+                                                       href="/backstage/staff/finish/{{ pack.parcel.timestamp }}/">完成</a>
+                                                    {% endif %}
+                                                    <a class="btn btn-danger btn-xs"
+                                                       href="/backstage/staff/send_back/{{ pack.parcel.timestamp }}/"
+                                                       onclick="return confirm('确定要退回么?')">退回</a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <span class="step-links">
+                                            {% if pages_delivery.has_previous %}
+                                                <a href="?page=1" class="btn btn-default">&laquo; 首页</a>
+                                                <a href="?page={{ pages_delivery.previous_page_number }}"
+                                                   class="btn btn-default">上一页</a>
+                                            {% endif %}
+                                            <a class="btn btn-default active" href="?page={{ pages_delivery.number }}">
+                                                第 {{ pages_delivery.number }} 页，共 {{ pages_delivery.paginator.num_pages }} 页
+                                            </a>
+                                            {% if pages_delivery.has_next %}
+                                                <a class="btn btn-default"
+                                                   href="?page={{ pages_delivery.next_page_number }}">下一页</a>
+                                                <a class="btn btn-default" href="?page={{ pages_delivery.paginator.num_pages }}">末页 &raquo;</a>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
+
+            </div><!-- Main Wrapper -->
+            <!--footer -->
+            <div class="page-footer">
+                <p>Copyright &copy; All rights reserved.</p>
+            </div>
+        </div><!-- /Page Inner -->
+    </div><!-- /Page Content -->
+{% endblock %}

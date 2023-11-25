@@ -1,0 +1,107 @@
+﻿{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block header %}
+    <!-- start header area -->
+    <header class="header-area">
+        <!-- start main navbar area -->
+        <div class="main-navbar-area sticky-header">
+            <div class="mobile-navbar">
+                <div class="container">
+                    <div class="mobile-navbar-inner">
+                        <h2><img src="{% static 'images/package.ico' %}" alt="icon" height="15%" width="15%">&nbsp;XXX快递
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-nav">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href=“/”>
+                            <h2><img src="{% static 'images/package.ico' %}" alt="icon" height="15%" width="15%">&nbsp;XXX快递
+                            </h2>
+                        </a>
+                        <div class="mean-menu ml-auto">
+                            <ul class="navbar-nav" id="menu">
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link toggle">主页</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link toggle active">用户信息<i class='bx bx-plus'></i></a>
+                                    <ul class="dropdown-menu">
+                                        {% if username %}
+                                            <li class="nav-item">
+                                                <a href="/login/" class="nav-link active">{{ username }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/login/" class="nav-link active">登出</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="nav-item">
+                                                <a href="/login/" class="nav-link active">登录</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- end mean-menu -->
+                    </nav><!-- end navbar -->
+                </div><!-- container -->
+            </div><!-- end main-nav -->
+
+        </div>
+        <!-- end main navbar area -->
+    </header>
+    <!-- end header area -->
+{% endblock %}
+
+{% block section1 %}
+    <!-- start page title area-->
+    <div class="page-title-area" style="background-image: url(../static/images/login.jpg)">
+        <div class="container">
+            <div class="content">
+                <h1>登陆</h1>
+                <ul>
+                    <li class="item">用户</li>
+                    <li class="item active">登陆</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end page title area -->
+{% endblock %}
+
+{% block section2 %}
+    <!-- start authentication area -->
+    <div class="authentication-section">
+        <div class="container">
+            <div class="main-form ptb-100">
+
+                <form id="UserLogin" method="post">
+                    <div class="content">
+                        <h3>欢迎回来</h3>
+                        <p>如果你有我们的账户，请登录</p>
+                    </div>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control" placeholder="用户名" required
+                               value="{% if username %}{{ username }}{% endif %}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" class="form-control" placeholder="电话号码" required
+                               value="{% if phone %}{{ phone }}{% endif %}">
+                    </div>
+                    {% if error %}
+                        <p style="color: #8b211e;font-size: 12px;">{{ error }}</p>
+                    {% endif %}
+                    <button type="submit" class="primary-btn">
+                        登陆
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end authentication section -->
+{% endblock %}
