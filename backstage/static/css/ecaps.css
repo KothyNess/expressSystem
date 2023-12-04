@@ -900,7 +900,6 @@ blockquote {
     border-radius: 0;
     box-shadow: none;
     border: 0;
-    background-color: #;
 }
 
 .breadcrumb {
@@ -4547,7 +4546,6 @@ body.error-page {
     }
     
     .navbar-toggle {
-        border-radius: 100%;
         width: 40px;
     }
     

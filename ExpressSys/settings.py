@@ -122,3 +122,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# 配置第一个会话
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 数据库存储引擎
+SESSION_COOKIE_NAME = 'common'  # 第一个会话的cookie名称
+
+# 配置第二个会话
+SECOND_SESSION_ENGINE = 'django.contrib.sessions.backends.cache'  # 缓存存储引擎
+SECOND_SESSION_COOKIE_NAME = 'admin'  # 第二个会话的cookie名称

@@ -26,6 +26,8 @@
     <link href="{% static 'css/ecaps.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/custom.css' %}" rel="stylesheet">
 
+
+    <script src="{% static 'plugins/echarts.min.js' %}"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,7 +49,13 @@
 </div>
 
 
+{% block especially %}
+{% endblock %}
+
+{% block charts %}
+{% endblock %}
 <!-- Javascripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>
 <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
@@ -61,8 +69,9 @@
 <script src="{% static 'plugins/flot/jquery.flot.resize.min.js' %}"></script>
 <script src="{% static 'plugins/flot/jquery.flot.tooltip.min.js' %}"></script>
 <script src="{% static 'plugins/flot/jquery.flot.pie.min.js' %}"></script>
-<script src="{% static 'plugins/chartjs/chart.min.js' %}"></script>
 <script src="{% static 'js/ecaps.min.js' %}"></script>
 <script src="{% static 'js/pages/dashboard.js' %}"></script>
+{% block js %}
+{% endblock %}
 </body>
 </html>

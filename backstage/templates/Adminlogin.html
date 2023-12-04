@@ -1,6 +1,10 @@
 {% extends 'BackStagelayout.html' %}
 {% load static %}
 
+{% block title %}
+    员工登录
+{% endblock %}
+
 {% block PageContent %}
     <!-- Page Container -->
     <div class="page-container">
@@ -9,18 +13,21 @@
             <div id="main-wrapper" class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 login-box">
-                        <h4 class="login-title">Sign in to your account</h4>
+                        <h4 class="login-title">管理员登录</h4>
                         <form method="post">
+                            {% csrf_token %}
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1">
+                                <label for="username">用户名</label>
+                                <input type="text" class="form-control" id="username" name="username" value="{% if username %}{{ username }}{% endif %}" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label for="Password1">密码</label>
+                                <input type="password" class="form-control" id="Password1" name="password" value="{% if password %}{{ password }}{% endif %}" required>
                             </div>
-                            <button class="btn btn-primary">Login</button>
-                            <button class="forgot-link">Forgot password?</button>
+                            {% if error %}
+                                <p style="color: #8b211e;font-size: 12px;">{{ error }}</p>
+                            {% endif %}
+                            <button class="btn btn-primary">登录</button>
                         </form>
                     </div>
                 </div>

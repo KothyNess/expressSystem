@@ -1,6 +1,9 @@
 ﻿{% extends 'layout.html' %}
 {% load static %}
 
+{% block title %}
+    用户登录
+{% endblock %}
 
 {% block header %}
     <!-- start header area -->
@@ -19,7 +22,7 @@
             <div class="main-nav">
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand" href=“/”>
+                        <a class="navbar-brand" href="/">
                             <h2><img src="{% static 'images/package.ico' %}" alt="icon" height="15%" width="15%">&nbsp;XXX快递
                             </h2>
                         </a>
@@ -31,18 +34,9 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link toggle active">用户信息<i class='bx bx-plus'></i></a>
                                     <ul class="dropdown-menu">
-                                        {% if username %}
-                                            <li class="nav-item">
-                                                <a href="/login/" class="nav-link active">{{ username }}</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/login/" class="nav-link active">登出</a>
-                                            </li>
-                                        {% else %}
-                                            <li class="nav-item">
-                                                <a href="/login/" class="nav-link active">登录</a>
-                                            </li>
-                                        {% endif %}
+                                        <li class="nav-item">
+                                            <a href="/login/" class="nav-link active">登录</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -78,7 +72,6 @@
     <div class="authentication-section">
         <div class="container">
             <div class="main-form ptb-100">
-
                 <form id="UserLogin" method="post">
                     <div class="content">
                         <h3>欢迎回来</h3>

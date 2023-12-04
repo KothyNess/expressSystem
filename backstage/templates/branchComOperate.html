@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    综合统计 - 按时间
+    分公司操作
 {% endblock %}
 
 {% block slider %}
@@ -35,7 +35,7 @@
                     </li>
                     <li>
                         <a href="/backstage/station/">
-                            <i class="menu-icon icon-home2"></i><span>分公站管理</span>
+                            <i class="menu-icon icon-home2"></i><span>分站管理</span>
                         </a>
                     </li>
                     <li>
@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/backstage/getPack/">
+                        <a href="/backstage/Pack/">
                             <i class="menu-icon icon-add_box"></i><span>揽件管理</span>
                         </a>
                     </li>
@@ -67,11 +67,24 @@
         <div class="page-header">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="logo-sm">
+                            <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="dropdown-toggle navbar-toggle">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <p>{{ admin_name }}</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/backstage/adminLogout/">登出</a></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i
-                                    class="fa fa-bars"></i></a></li>
-                            <li><a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                            <li>
+                                <a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -107,6 +120,7 @@
                                     <form method="post">
                                         {% csrf_token %}
                                         <div class="form-group ">
+                                            <input type="text" hidden value="{{ id }}" name="id" id="id">
                                             <label for="city">所在城市</label>
                                             <select style="margin-bottom:15px;" class="form-control" id="city"
                                                     name="city">
@@ -127,7 +141,7 @@
                                         {% endif %}
                                         <div class="company_add_form">
                                             <div style="max-width: 200px; margin: 0 auto;">
-                                                <button type="submit" class="btn btn-primary">添 &nbsp;&nbsp; 加
+                                                <button type="submit" class="btn btn-primary">提 &nbsp;&nbsp; 交
                                                 </button>
                                                 <a href="/backstage/company/" class="btn btn-default">取 &nbsp;&nbsp;
                                                     消</a>

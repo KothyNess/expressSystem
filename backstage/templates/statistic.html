@@ -2,235 +2,403 @@
 {% load static %}
 
 {% block title %}
-    综合统计 - 按时间
+    综合统计 - {{ type }}
 {% endblock %}
 
 {% block slider %}
     <!-- Page Sidebar -->
-        <div class="page-sidebar">
-            <a class="logo-box" href="statistic.html">
-                <span>快递后台管理</span>
-                <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
-                <i class="icon-close" id="sidebar-toggle-button-close"></i>
-            </a>
-            <div class="page-sidebar-inner">
-                <div class="page-sidebar-menu">
-                    <ul class="accordion-menu">
-                        <li class="active-page">
-                            <a href="javascript:void(0)">
-                                <i class="menu-icon icon-flash_on"></i><span>综合统计</span><i
-                                    class="accordion-icon fa fa-angle-left"></i>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="active-page"><a href="/backstage/statistic/time">按时间统计</a></li>
-                                <li><a href="/backstage/statistic/company">按分公司统计</a></li>
-                                <li><a href="/backstage/statistic/station">按分站统计</a></li>
-                                <li><a href="/backstage/statistic/staff">按快递员统计</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="/backstage/manage/company">
-                                <i class="menu-icon icon-home"></i><span>分公司管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/backstage/manage/station">
-                                <i class="menu-icon icon-home2"></i><span>分公站管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/backstage/manage/staff">
-                                <i class="menu-icon icon-person"></i><span>快递员管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/backstage/manage/getPack">
-                                <i class="menu-icon icon-add_box"></i><span>揽件管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/backstage/manage/deliverPack">
-                                <i class="menu-icon icon-send"></i><span>发货管理</span>
-                            </a>
-                        </li>
+    <div class="page-sidebar">
+        <a class="logo-box" href="/backstage/login/">
+            <span>快递后台管理</span>
+            <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+            <i class="icon-close" id="sidebar-toggle-button-close"></i>
+        </a>
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li class="active-page">
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon icon-flash_on"></i><span>综合统计</span><i
+                                class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li {% if active == "date" %}class="active-page"{% endif %}><a
+                                    href="/backstage/statistic/time">按时间统计</a></li>
+                            <li {% if active == "company" %}class="active-page"{% endif %}><a
+                                    href="/backstage/statistic/company">按分公司统计</a></li>
+                            <li {% if active == "station" %}class="active-page"{% endif %}><a
+                                    href="/backstage/statistic/station">按分站统计</a></li>
+                            <li {% if active == "staff" %}class="active-page"{% endif %}><a
+                                    href="/backstage/statistic/staff">按快递员统计</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/backstage/company/">
+                            <i class="menu-icon icon-home"></i><span>分公司管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/station/">
+                            <i class="menu-icon icon-home2"></i><span>分站管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/staff/">
+                            <i class="menu-icon icon-person"></i><span>快递员管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/Pack/">
+                            <i class="menu-icon icon-add_box"></i><span>揽件管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/deliverPack/">
+                            <i class="menu-icon icon-send"></i><span>发货管理</span>
+                        </a>
+                    </li>
 
-                    </ul>
-                </div>
+                </ul>
             </div>
-        </div><!-- /Page Sidebar -->
+        </div>
+    </div><!-- /Page Sidebar -->
 {% endblock %}
 
 {% block PageContent %}
     <!-- Page Content -->
-<div class="page-content">
-    <!-- Page Header -->
-    <div class="page-header">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i
-                                class="fa fa-bars"></i></a></li>
-                        <li><a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown user-dropdown">
+    <div class="page-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="logo-sm">
+                            <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="dropdown-toggle navbar-toggle">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false"><img
-                                    src="http://via.placeholder.com/36x36" alt="" class="img-circle"></a>
+                               aria-haspopup="true" aria-expanded="false">
+                                <p>{{ admin_name }}</p>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Log Out</a></li>
+                                <li><a href="/backstage/adminLogout/">登出</a></li>
                             </ul>
-                        </li>
-                    </ul>
-                </div><!-- navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-    </div><!-- /Page Header -->
-    <!-- Page Inner -->
-    <div class="page-inner">
-        <div class="page-title">
-            <h3 class="breadcrumb-header">综合统计</h3>
-        </div>
-        <div id="main-wrapper">
-            <!-- altogether statistic -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">4</span>
-                                <p class="stats-info">分公司总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-home stats-icon"></i>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <h4>欢迎你：{{ admin_name }}</h4>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/backstage/adminLogout/">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div><!-- /Page Header -->
+        <!-- Page Inner -->
+        <div class="page-inner">
+            <div class="page-title">
+                <h3 class="breadcrumb-header">综合统计</h3>
+            </div>
+            <div id="main-wrapper">
+                <!-- altogether statistic -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.company }}</span>
+                                    <p class="stats-info">分公司总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-home stats-icon"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">10</span>
-                                <p class="stats-info">分站总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-home2 stats-icon"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">300</span>
-                                <p class="stats-info">快递员总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-person stats-icon"></i>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.stations }}</span>
+                                    <p class="stats-info">分站总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-home2 stats-icon"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">7000</span>
-                                <p class="stats-info">包裹总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-check_box stats-icon"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- Row -->
-            <!-- chart -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="panel panel-white">
-                        <div class="panel-heading clearfix">
-                            <h4 class="panel-title">按时间统计</h4>
-                        </div>
-                        <div class="panel-body">
-                            <div id="chart1">
-                                <svg></svg>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.staff }}</span>
+                                    <p class="stats-info">快递员总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-person stats-icon"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- Row -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.packs }}</span>
+                                    <p class="stats-info">包裹总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-check_box stats-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
+                <!-- chart -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix">
+                                <h4 class="panel-title">按{{ type }}统计</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div id="statisticChart" style="width: 100%; height:400px; overflow-x: hidden;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
+                <!-- table -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix">
+                                <h4 class="panel-title">按{{ type }}统计</h4>
+                                <div class="">
+                                    <div class="panel-body">
+                                        <form class="form-inline" method="get">
+                                            <div class="form-group">
+                                                {% if type == '时间' %}
+                                                    <label class="sr-only" for="date">时间</label>
+                                                    <select class="form-control" id="date"
+                                                            name="date">
+                                                        <option value="0">全部</option>
+                                                        {% for date in dates %}
+                                                            <option value="{{ date }}"
+                                                                    {% if selected_date == date %}selected{% endif %}>{{ date }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                {% elif type == '分公司' %}
+                                                    <label class="sr-only" for="company">分公司</label>
+                                                    <select class="form-control" id="company"
+                                                            name="company">
+                                                        <option value="0">全部</option>
 
-            <!-- table -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="panel panel-white">
-                        <div class="panel-heading clearfix">
-                            <h4 class="panel-title">Invoices</h4>
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive invoice-table">
-                                <table class="table">
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">0186</th>
-                                        <td>Darrell Price</td>
-                                        <td>Twitter</td>
-                                        <td><span class="label label-success">Finished</span></td>
-                                        <td>$1714</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0186</th>
-                                        <td>Darrell Price</td>
-                                        <td>Twitter</td>
-                                        <td><span class="label label-success">Finished</span></td>
-                                        <td>$1714</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0712</th>
-                                        <td>Richard Lunsford</td>
-                                        <td>Facebook</td>
-                                        <td><span class="label label-danger">Denied</span></td>
-                                        <td>$685</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0095</th>
-                                        <td>Amy Walker</td>
-                                        <td>Youtube</td>
-                                        <td><span class="label label-warning">Pending</span></td>
-                                        <td>$9900</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1054</th>
-                                        <td>Kathy Olson</td>
-                                        <td>Youtube</td>
-                                        <td><span class="label label-default">Upcoming</span></td>
-                                        <td>$1250</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0043</th>
-                                        <td>Susan Mabry</td>
-                                        <td>Instagram</td>
-                                        <td><span class="label label-default">Upcoming</span></td>
-                                        <td>$399</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                                        {% for company in companies %}
+                                                            <option value="{{ company.id }}"
+                                                                    {% if selected_company == company.id %}selected{% endif %}>{{ company.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                {% elif type == '快递站' %}
+                                                    <label class="sr-only" for="station">快递站</label>
+                                                    <select class="form-control" id="station"
+                                                            name="station">
+                                                        <option value="0">全部</option>
+
+                                                        {% for station in stations %}
+                                                            <option value="{{ station.id }}"
+                                                                    {% if station.id == selected_station %}selected{% endif %}>{{ station.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                {% elif type == '快递员' %}
+                                                    <label class="sr-only" for="courier">快递员</label>
+                                                    <select class="form-control" id="courier"
+                                                            name="courier">
+                                                        <option value="0">全部</option>
+
+                                                        {% for courier in couriers %}
+                                                            <option value="{{ courier.id }}"
+                                                                    {% if selected_courier == courier.id %}selected{% endif %}>{{ courier.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                {% endif %}
+                                            </div>
+                                            <button type="submit" class="btn btn-danger">查 &nbsp;&nbsp; 找</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive invoice-table">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>{{ type }}</th>
+                                            <th>揽收数</th>
+                                            <th>发件数</th>
+                                            <th>送件数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% if type == '时间' %}
+                                            {% for date, data in statistics %}
+                                                <tr>
+                                                    <th scope="row">{{ date }}</th>
+                                                    <td>{{ data.pickups }}</td>
+                                                    <td>{{ data.dispatch }}</td>
+                                                    <td>{{ data.delivery }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% elif type == '分公司' %}
+                                            {% for company in statistics %}
+                                                <tr>
+                                                    <th scope="row">{{ company.name }}</th>
+                                                    <td>{{ company.pickups }}</td>
+                                                    <td>{{ company.dispatch }}</td>
+                                                    <td>{{ company.delivery }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% elif type == "快递站" %}
+                                            {% for station in statistics %}
+                                                <tr>
+                                                    <th scope="row">{{ station.name }}</th>
+                                                    <td>{{ station.pickups }}</td>
+                                                    <td>{{ station.dispatch }}</td>
+                                                    <td>{{ station.delivery }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% elif type == '快递员' %}
+                                            {% for courier in statistics %}
+                                                <tr>
+                                                    <th scope="row">{{ courier.name }}</th>
+                                                    <td>{{ courier.pickups }}</td>
+                                                    <td>{{ courier.dispatch }}</td>
+                                                    <td>{{ courier.delivery }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <span class="step-links">
+                                            {% if statistics.has_previous %}
+                                                <a href="?page=1" class="btn btn-default">&laquo; 首页</a>
+                                                <a href="?page={{ statistics.previous_page_number }}"
+                                                   class="btn btn-default">上一页</a>
+                                            {% endif %}
+                                            <a class="btn btn-default active" href="?page={{ statistics.number }}">
+                                                第 {{ statistics.number }} 页，共 {{ statistics.paginator.num_pages }} 页
+                                            </a>
+                                            {% if statistics.has_next %}
+                                                <a class="btn btn-default"
+                                                   href="?page={{ statistics.next_page_number }}">下一页</a>
+                                                <a class="btn btn-default"
+                                                   href="?page={{ statistics.paginator.num_pages }}">末页 &raquo;</a>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- Row -->
+                </div><!-- Row -->
 
-        </div><!-- Main Wrapper -->
-        <!--footer -->
-        <div class="page-footer">
-            <p>Copyright &copy; All rights reserved.</p>
-        </div>
-    </div><!-- /Page Inner -->
-</div><!-- /Page Content -->
+            </div><!-- Main Wrapper -->
+            <!--footer -->
+            <div class="page-footer">
+                <p>Copyright &copy; All rights reserved.</p>
+            </div>
+        </div><!-- /Page Inner -->
+    </div><!-- /Page Content -->
+{% endblock %}
+
+{% block charts %}
+    <script>
+        var chartDom = document.getElementById('statisticChart');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        var xRow = ['{{ type }}'];
+        var yRow1 = ['揽收数'];
+        var yRow2 = ['发件数'];
+        var yRow3 = ['送件数'];
+        {% if type == '快递员' %}
+            {% for courier in statistics %}
+                xRow.push('{{ courier.name }}');
+            {% endfor %}
+        {% elif type == '时间' %}
+            {% for date, data in statistics %}
+                xRow.push('{{ date }}');
+            {% endfor %}
+        {% elif type == '分公司' %}
+            {% for company in statistics %}
+                xRow.push('{{ company.name }}');
+            {% endfor %}
+        {% endif %}
+
+        {% if type == '快递员' %}
+            {% for courier in statistics %}
+                yRow1.push('{{ courier.pickups }}');
+                yRow2.push('{{ courier.dispatch }}');
+                yRow3.push('{{ courier.delivery }}');
+            {% endfor %}
+        {% elif type == '时间' %}
+            {% for date, data in statistics %}
+                yRow1.push('{{ data.pickups }}');
+                yRow2.push('{{ data.dispatch }}');
+                yRow3.push('{{ data.delivery }}');
+            {% endfor %}
+        {% elif type == '分公司' %}
+            {% for company in statistics %}
+                yRow1.push('{{ company.pickups }}');
+                yRow2.push('{{ company.dispatch }}');
+                yRow3.push('{{ company.delivery }}');
+            {% endfor %}
+        {% elif type == '快递站' %}
+            {% for station in statistics %}
+                xRow.push("{{ station.name }}");
+                yRow1.push('{{ station.pickups }}');
+                yRow2.push('{{ station.dispatch }}');
+                yRow3.push('{{ station.delivery }}');
+            {% endfor %}
+        {% endif %}
+
+
+        option = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+                source: [
+                    xRow,
+                    yRow1,
+                    yRow2,
+                    yRow3
+                ]
+            },
+            xAxis: [{type: 'category', gridIndex: 0, axisLabel: {rotate: 45}}],
+            yAxis: [{gridIndex: 0}],
+            grid: [{bottom: '30%'}, {top: '55%'}],
+            series: [
+                // These series are in the first grid.
+                {type: 'bar', seriesLayoutBy: 'row'},
+                {type: 'bar', seriesLayoutBy: 'row'},
+                {type: 'bar', seriesLayoutBy: 'row'}
+            ]
+        };
+
+        option && myChart.setOption(option);
+    </script>
 {% endblock %}

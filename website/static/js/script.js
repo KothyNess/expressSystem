@@ -365,8 +365,8 @@
         },
         preLoader: function() {
             $("#preloader")
-            .delay(1000)
-            .slideUp(500)
+            .delay(0)
+            .slideUp(0)
             .queue(function() {
                 $(this).remove();
             });

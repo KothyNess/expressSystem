@@ -2,235 +2,255 @@
 {% load static %}
 
 {% block title %}
-    综合统计 - 按时间
+    分站管理
 {% endblock %}
 
 {% block slider %}
     <!-- Page Sidebar -->
-        <div class="page-sidebar">
-            <a class="logo-box" href="statistic.html">
-                <span>快递后台管理</span>
-                <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
-                <i class="icon-close" id="sidebar-toggle-button-close"></i>
-            </a>
-            <div class="page-sidebar-inner">
-                <div class="page-sidebar-menu">
-                    <ul class="accordion-menu">
-                        <li class="active-page">
-                            <a href="javascript:void(0)">
-                                <i class="menu-icon icon-flash_on"></i><span>综合统计</span><i
-                                    class="accordion-icon fa fa-angle-left"></i>
-                            </a>
-                            <ul class="sub-menu">
-                                <li class="active-page"><a href="backstage/statistic/time">按时间统计</a></li>
-                                <li><a href="backstage/statistic/company">按分公司统计</a></li>
-                                <li><a href="backstage/statistic/station">按分站统计</a></li>
-                                <li><a href="backstage/statistic/staff">按快递员统计</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="backstage/manage/company">
-                                <i class="menu-icon icon-home"></i><span>分公司管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="backstage/manage/station">
-                                <i class="menu-icon icon-home2"></i><span>分公站管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="backstage/manage/staff">
-                                <i class="menu-icon icon-person"></i><span>快递员管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="backstage/manage/getPack">
-                                <i class="menu-icon icon-add_box"></i><span>揽件管理</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="backstage/manage/deliverPack">
-                                <i class="menu-icon icon-send"></i><span>发货管理</span>
-                            </a>
-                        </li>
+    <div class="page-sidebar">
+        <a class="logo-box" href="/backstage/login/">
+            <span>快递后台管理</span>
+            <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+            <i class="icon-close" id="sidebar-toggle-button-close"></i>
+        </a>
+        <div class="page-sidebar-inner">
+            <div class="page-sidebar-menu">
+                <ul class="accordion-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon icon-flash_on"></i><span>综合统计</span><i
+                                class="accordion-icon fa fa-angle-left"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="/backstage/statistic/time">按时间统计</a></li>
+                            <li><a href="/backstage/statistic/company">按分公司统计</a></li>
+                            <li><a href="/backstage/statistic/station">按分站统计</a></li>
+                            <li><a href="/backstage/statistic/staff">按快递员统计</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/backstage/company/">
+                            <i class="menu-icon icon-home"></i><span>分公司管理</span>
+                        </a>
+                    </li>
+                    <li class="active-page">
+                        <a href="/backstage/station/">
+                            <i class="menu-icon icon-home2"></i><span>分站管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/staff/">
+                            <i class="menu-icon icon-person"></i><span>快递员管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/Pack/">
+                            <i class="menu-icon icon-add_box"></i><span>揽件管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/backstage/deliverPack/">
+                            <i class="menu-icon icon-send"></i><span>发货管理</span>
+                        </a>
+                    </li>
 
-                    </ul>
-                </div>
+                </ul>
             </div>
-        </div><!-- /Page Sidebar -->
+        </div>
+    </div><!-- /Page Sidebar -->
 {% endblock %}
 
 {% block PageContent %}
     <!-- Page Content -->
-<div class="page-content">
-    <!-- Page Header -->
-    <div class="page-header">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="javascript:void(0)" id="collapsed-sidebar-toggle-button"><i
-                                class="fa fa-bars"></i></a></li>
-                        <li><a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown user-dropdown">
+    <div class="page-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="logo-sm">
+                            <a href="javascript:void(0)" id="sidebar-toggle-button"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <div class="dropdown-toggle navbar-toggle">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false"><img
-                                    src="http://via.placeholder.com/36x36" alt="" class="img-circle"></a>
+                               aria-haspopup="true" aria-expanded="false">
+                                <p>{{ admin_name }}</p>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Log Out</a></li>
+                                <li><a href="/backstage/adminLogout/">登出</a></li>
                             </ul>
-                        </li>
-                    </ul>
-                </div><!-- navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-    </div><!-- /Page Header -->
-    <!-- Page Inner -->
-    <div class="page-inner">
-        <div class="page-title">
-            <h3 class="breadcrumb-header">综合统计</h3>
-        </div>
-        <div id="main-wrapper">
-            <!-- altogether statistic -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">4</span>
-                                <p class="stats-info">分公司总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-home stats-icon"></i>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="javascript:void(0)" id="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown user-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    <h4>欢迎你：{{ admin_name }}</h4>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/backstage/adminLogout/">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div><!-- /Page Header -->
+        <!-- Page Inner -->
+        <div class="page-inner">
+            <div class="page-title">
+                <h3 class="breadcrumb-header">综合统计</h3>
+            </div>
+            <div id="main-wrapper">
+                <!-- altogether statistic -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.company }}</span>
+                                    <p class="stats-info">分公司总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-home stats-icon"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">10</span>
-                                <p class="stats-info">分站总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-home2 stats-icon"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">300</span>
-                                <p class="stats-info">快递员总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-person stats-icon"></i>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.stations }}</span>
+                                    <p class="stats-info">分站总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-home2 stats-icon"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-white stats-widget">
-                        <div class="panel-body">
-                            <div class="pull-left">
-                                <span class="stats-number">7000</span>
-                                <p class="stats-info">包裹总数</p>
-                            </div>
-                            <div class="pull-right">
-                                <i class="icon-check_box stats-icon"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- Row -->
-            <!-- chart -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="panel panel-white">
-                        <div class="panel-heading clearfix">
-                            <h4 class="panel-title">按时间统计</h4>
-                        </div>
-                        <div class="panel-body">
-                            <div id="chart1">
-                                <svg></svg>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.staff }}</span>
+                                    <p class="stats-info">快递员总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-person stats-icon"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- Row -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white stats-widget">
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <span class="stats-number">{{ al_statistic.packs }}</span>
+                                    <p class="stats-info">包裹总数</p>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="icon-check_box stats-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row -->
 
-            <!-- table -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="panel panel-white">
-                        <div class="panel-heading clearfix">
-                            <h4 class="panel-title">Invoices</h4>
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive invoice-table">
-                                <table class="table">
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">0186</th>
-                                        <td>Darrell Price</td>
-                                        <td>Twitter</td>
-                                        <td><span class="label label-success">Finished</span></td>
-                                        <td>$1714</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0186</th>
-                                        <td>Darrell Price</td>
-                                        <td>Twitter</td>
-                                        <td><span class="label label-success">Finished</span></td>
-                                        <td>$1714</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0712</th>
-                                        <td>Richard Lunsford</td>
-                                        <td>Facebook</td>
-                                        <td><span class="label label-danger">Denied</span></td>
-                                        <td>$685</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0095</th>
-                                        <td>Amy Walker</td>
-                                        <td>Youtube</td>
-                                        <td><span class="label label-warning">Pending</span></td>
-                                        <td>$9900</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1054</th>
-                                        <td>Kathy Olson</td>
-                                        <td>Youtube</td>
-                                        <td><span class="label label-default">Upcoming</span></td>
-                                        <td>$1250</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">0043</th>
-                                        <td>Susan Mabry</td>
-                                        <td>Instagram</td>
-                                        <td><span class="label label-default">Upcoming</span></td>
-                                        <td>$399</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix" style="position:relative ">
+                                <h4 class="panel-title col-6">
+                                    快递站信息
+                                </h4>
+                                <a href="/backstage/station/add/" class="btn btn-success btn-small"
+                                   style="position: absolute; right:0; top: 0;">新增</a>
+                                <div class="">
+                                    <div class="panel-body">
+                                        <form class="form-inline" method="get">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="company">所属分公司</label>
+                                                <select class="form-control" id="company"
+                                                        name="company">
+                                                    <option value="0">全部</option>
+
+                                                    {% for company in companies %}
+                                                        <option value="{{ company.id }}"
+                                                                {% if selected_company == company.id %}selected{% endif %}>{{ company.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-danger">查 &nbsp;&nbsp; 找</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive invoice-table">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>分站所属公司</th>
+                                            <th>分站名称</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for station in pages %}
+                                            <tr>
+                                                <th scope="row">{{ station.id }}</th>
+                                                <td>{{ station.branch_office.name }}</td>
+                                                <td>{{ station.name }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-xs"
+                                                       href="/backstage/station/edit/{{ station.id }}/">编辑</a>
+                                                    <a class="btn btn-danger btn-xs"
+                                                       href="/backstage/station/delete/{{ station.id }}"
+                                                       onclick="return confirm('确定要删除么?')">删除</a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <span class="step-links">
+                                            {% if pages.has_previous %}
+                                                <a href="?page=1" class="btn btn-default">&laquo; 首页</a>
+                                                <a href="?page={{ pages.previous_page_number }}"
+                                                   class="btn btn-default">上一页</a>
+                                            {% endif %}
+                                            <a class="btn btn-default active" href="?page={{ pages.number }}">
+                                                第 {{ pages.number }} 页，共 {{ pages.paginator.num_pages }} 页
+                                            </a>
+                                            {% if pages.has_next %}
+                                                <a class="btn btn-default"
+                                                   href="?page={{ pages.next_page_number }}">下一页</a>
+                                                <a class="btn btn-default" href="?page={{ pages.paginator.num_pages }}">末页 &raquo;</a>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- Row -->
+                </div><!-- Row -->
 
-        </div><!-- Main Wrapper -->
-        <!--footer -->
-        <div class="page-footer">
-            <p>Copyright &copy; All rights reserved.</p>
-        </div>
-    </div><!-- /Page Inner -->
-</div><!-- /Page Content -->
+            </div><!-- Main Wrapper -->
+            <!--footer -->
+            <div class="page-footer">
+                <p>Copyright &copy; All rights reserved.</p>
+            </div>
+        </div><!-- /Page Inner -->
+    </div><!-- /Page Content -->
 {% endblock %}

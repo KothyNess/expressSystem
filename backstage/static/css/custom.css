@@ -1,1 +1,11 @@
 /* Write your custom CSS here */
+
+.company_add_center{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.company_add_form{
+    position: relative;
+}

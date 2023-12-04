@@ -7,282 +7,505 @@
 
 {% block header %}
     <!-- start header area -->
-        <header class="header-area">
-            <!-- start main navbar area -->
-            <div class="main-navbar-area sticky-header">
-                <div class="mobile-navbar">
-                    <div class="container">
-                        <div class="mobile-navbar-inner">
-                            <h2><img src="{% static 'images/package.ico' %}" alt="icon" height="15%" width="15%">&nbsp;XXX快递
-                            </h2>
-                        </div>
+    <header class="header-area">
+        <!-- start main navbar area -->
+        <div class="main-navbar-area sticky-header">
+            <div class="mobile-navbar">
+                <div class="container">
+                    <div class="mobile-navbar-inner">
+                        <h2><img src="{% static 'images/package.ico' %}" alt="icon" height="15%" width="15%">&nbsp;XXX快递
+                        </h2>
                     </div>
                 </div>
-
-                <div class="main-nav">
-                    <div class="container">
-                        <nav class="navbar navbar-expand-md navbar-light">
-                            <a class="navbar-brand" href="index.html">
-                                <h2><img src="{% static 'images/package.ico' %}" alt="icon" height="15%" width="15%">&nbsp;XXX快递
-                                </h2>
-                            </a>
-                            <div class="mean-menu ml-auto">
-                                <ul class="navbar-nav" id="menu">
-                                    <li class="nav-item">
-                                        <a href="/" class="nav-link toggle active">主页</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link toggle">用户信息<i class='bx bx-plus'></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="/login/" class="nav-link">登陆</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div><!-- end mean-menu -->
-                        </nav><!-- end navbar -->
-                    </div><!-- container -->
-                </div><!-- end main-nav -->
-
             </div>
-            <!-- end main navbar area -->
-        </header>
-        <!-- end header area -->
+
+            <div class="main-nav">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="/">
+                            <h2><img src="{% static 'images/package.ico' %}" alt="icon" height="15%" width="15%">&nbsp;XXX快递
+                            </h2>
+                        </a>
+                        <div class="mean-menu ml-auto">
+                            <ul class="navbar-nav" id="menu">
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link toggle active">主页</a>
+                                </li>
+                                <li class="nav-item">
+                                    {% if username %}
+                                        <a href="#" class="nav-link">{{ username }}<i class='bx bx-plus'></i></a>
+                                    {% else %}
+                                        <a href="#" class="nav-link">未登录<i class='bx bx-plus'></i></a>
+                                    {% endif %}
+                                    <ul class="dropdown-menu">
+                                        {% if username %}
+                                            <li class="nav-item">
+                                                <a href="/" class="nav-link">{{ username }}</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/logout/" class="nav-link">登出</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="nav-item">
+                                                <a href="/login/" class="nav-link">登录</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- end mean-menu -->
+                    </nav><!-- end navbar -->
+                </div><!-- container -->
+            </div><!-- end main-nav -->
+
+        </div>
+        <!-- end main navbar area -->
+    </header>
+    <!-- end header area -->
 {% endblock %}
 
 {% block section1 %}
     <!-- start home banner area -->
-        <div id="home" class="home-banner-area">
-            <div class="container-fluid p-0">
-                <div class="home-slider owl-carousel">
+    <div id="home" class="home-banner-area">
+        <div class="container-fluid p-0">
+            <div class="home-slider owl-carousel">
 
-                    <div class="slider-item item-one">
-                        <div class="container">
-                            <div class="banner-content">
-                                <span class="sub-title">快速运输您的包裹</span>
-                                <h1 class="title">
-                                    我们拥有<br>最好的快递服务
-                                    <span></span>
-                                </h1>
-                                <p class="text"><br><br></p>
-                            </div>
+                <div class="slider-item item-one">
+                    <div class="container">
+                        <div class="banner-content">
+                            <span class="sub-title">快速运输您的包裹</span>
+                            <h1 class="title">
+                                我们拥有<br>最好的快递服务
+                                <span></span>
+                            </h1>
+                            <p class="text"><br><br></p>
                         </div>
-                    </div><!-- end slider-item -->
+                    </div>
+                </div><!-- end slider-item -->
 
-                    <div class="slider-item item-two">
-                        <div class="container">
-                            <div class="banner-content">
-                                <span class="sub-title">快速运输您的包裹</span>
-                                <h1 class="title">
-                                    我们拥有 <br> 最多的运输方式
-                                    <span></span>
-                                </h1>
-                                <p class="text"><br><br></p>
-                            </div>
+                <div class="slider-item item-two">
+                    <div class="container">
+                        <div class="banner-content">
+                            <span class="sub-title">令人舒心的快递服务</span>
+                            <h1 class="title">
+                                我们最好的服务 <br> 精心服务您与您的包裹
+                                <span></span>
+                            </h1>
+                            <p class="text"><br><br></p>
                         </div>
-                    </div><!-- end slider-item -->
+                    </div>
+                </div><!-- end slider-item -->
 
-                    <div class="slider-item item-three">
-                        <div class="container">
-                            <div class="banner-content">
-                                <span class="sub-title">快速运输您的包裹</span>
-                                <h1 class="title">
-                                    我们可以将快递运送到任何你想送到的地方
-                                    <span></span>
-                                </h1>
-                                <p class="text"><br><br></p>
-                            </div>
+                <div class="slider-item item-three">
+                    <div class="container">
+                        <div class="banner-content">
+                            <span class="sub-title">快速运输您的包裹</span>
+                            <h1 class="title">
+                                我们可以将快递运送到任何你想送到的地方
+                                <span></span>
+                            </h1>
+                            <p class="text"><br><br></p>
                         </div>
-                    </div><!-- end slider-item -->
+                    </div>
+                </div><!-- end slider-item -->
 
-                </div><!-- end home-slider -->
-            </div><!-- end container-fluid -->
-        </div>
-        <!-- end home banner area -->
+            </div><!-- end home-slider -->
+        </div><!-- end container-fluid -->
+    </div>
+    <!-- end home banner area -->
 {% endblock %}
 {% block section2 %}
     <!-- start tracking area -->
-        <div class="tracking-order-area bg-primary">
-            <div class="container">
-                <div class="inner-content">
-                    <div class="tracking-form">
-                        <form id="tracingForm" method="post">
-                            {% csrf_token %}
-                            <div class="form-inline justify-content-center">
-                                <div class="form-group align-middle">
-                                    <input type="text" class="form-control" name="PackId" placeholder="输入快递单号">
-                                </div>
-                                <button type="submit" class="primary-btn">追踪快递信息</button>
+    <div class="tracking-order-area bg-primary">
+        <div class="container">
+            <div class="inner-content">
+                <div class="tracking-form">
+                    <form id="tracingForm" method="post">
+                        {% csrf_token %}
+                        <div class="form-inline justify-content-center">
+                            <div class="form-group align-middle">
+                                <input type="text" class="form-control" name="PackId" placeholder="输入快递单号"
+                                       {% if packID %}value="{{ packID }}{% endif %}">
                             </div>
-                        </form>
-                    </div>
-                </div><!-- end inner-content -->
-            </div><!-- end container -->
-        </div>
-        <!-- end tracking area -->
+                            <button type="submit" class="primary-btn">追踪快递信息</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- end inner-content -->
+        </div><!-- end container -->
+    </div>
+    <!-- end tracking area -->
 {% endblock %}
 {% block section3 %}
     <!-- start promo service section -->
-        <section id="promo-service" class="promo-service-section ptb-70 bg-primary">
-            <div class="container">
-                <div class="section-title">
-                    <h2 class="title">
-                        查询结果
-                        <span></span>
-                    </h2>
-                    <p>输入正确单号后结果将会显示在此处</p>
-                </div>
-                <div class="row justify-content-center">
+    <section id="promo-service" class="promo-service-section ptb-70 bg-primary">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="title">
+                    查询结果
+                    <span></span>
+                </h2>
+                <p>输入正确单号后结果将会显示在此处</p>
+            </div>
+            <div class="row justify-content-center">
+                {% if pack_info == None%}
                     <div class="col-lg-12 col-md-12">
-                        <div class="item-single mb-30">
-                            <div class="icon float-left">
-                                <i class="flaticon-person"></i>
-                            </div>
-                            <div class="delivery-box">
-                                <h3 class="title"><a href="#">已签收</a></h3>
-                                <p class="text">8月2日11:00 客户签收，点击此处查看签收单</p>
-                            </div>
-                        </div><!-- end item-single -->
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="item-single mb-30">
-                            <div class="icon float-left">
-                                <i class="flaticon-plane"></i>
-                            </div>
-                            <div class="delivery-box">
-                                <h3 class="title"><a href="#">送件中</a></h3>
-                                <p class="text">8月2日10:00离开白云分站由 李四送件</p>
-                            </div>
-                        </div><!-- end item-single -->
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="item-single mb-30">
-                            <div class="icon float-left">
-                                <i class="flaticon-warehouse"></i>
-                            </div>
-                            <div class="delivery-box">
-                                <h3 class="title"><a href="#">发往日云分站</a></h3>
-                                <p class="text">8月2日9:00离开广州分公司发往日云分站</p>
-                            </div>
-                        </div><!-- end item-single -->
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="item-single mb-30">
-                            <div class="icon float-left">
-                                <i class="flaticon-ship"></i>
-                            </div>
-                            <div class="delivery-box">
-                                <h3 class="title"><a href="#">发往广州</a></h3>
-                                <p class="text">8月1日19:00离开天津分公司发往广州</p>
-                            </div>
-                        </div><!-- end item-single -->
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="item-single mb-30">
-                            <div class="icon float-left">
-                                <i class="flaticon-truck"></i>
-                            </div>
-                            <div class="delivery-box">
-                                <h3 class="title"><a href="#">发往天津分公司</a></h3>
-                                <p class="text">8月1日16:00 离开和平分站发往天津分公司</p>
-                            </div>
-                        </div><!-- end item-single -->
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="item-single mb-30">
-                            <div class="icon float-left">
-                                <i class="flaticon-food-delivery"></i>
-                            </div>
-                            <div class="delivery-box">
-                                <h3 class="title"><a href="#">已揽件</a></h3>
-                                <p class="text">8月1日 12:00 和平分站张三收件</p>
-                            </div>
-                        </div><!-- end item-single -->
-                    </div>
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section>
-        <!-- end promo service section -->
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-customer-service"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">无快件</a></h3>
+                                    <p class="text">&nbsp;</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                {% endif %}
+                {% for info in pack_info %}
+                    {% if info.status == '100' %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-delivery-box"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">快件订单已接受</a></h3>
+                                    <p class="text">{{ info.info }}</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                    {% elif info.status == '101' %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-food-delivery"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">已揽件</a></h3>
+                                    <p class="text">{{ info.info }}</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                    {% elif info.status == '102' %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-truck"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">运输中</a></h3>
+                                    <p class="text">{{ info.info }}</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                    {% elif info.status == '103' %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-warehouse"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">待分拣</a></h3>
+                                    <p class="text">{{ info.info }}</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                    {% elif info.status == '104' %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-food-delivery"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">送件中</a></h3>
+                                    <p class="text">{{ info.info }}</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                    {% elif info.status == '105' %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-person"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">已签收</a></h3>
+                                    <p class="text">{{ info.info }}</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                    {% elif info.status == '111' %}
+                        <div class="col-lg-12 col-md-12">
+                            <div class="item-single mb-30">
+                                <div class="icon float-left">
+                                    <i class="flaticon-box"></i>
+                                </div>
+                                <div class="delivery-box">
+                                    <h3 class="title"><a href="#">已退回</a></h3>
+                                    <p class="text">{{ info.info }}</p>
+                                </div>
+                            </div><!-- end item-single -->
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </section>
+    <!-- end promo service section -->
 {% endblock %}
 {% block section4 %}
     <!-- start transport section -->
-        <section id="transport" class="transportation-section pt-100 pb-70">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-5">
-                        <div class="content mb-30">
-                            <div class="section-title">
-                                <span class="sub-title">发送快递 <span></span></span><br>
-                                <h2 class="title">直接提交上门订单</h2>
-                                <p class="text">
-                                    在你提交之后会直接使用您的手机号创建账户
-                                </p>
-                                <a href="#" target="_self" rel="noopener noreferrer" class="primary-btn">联系我们</a>
-                            </div>
-                        </div><!-- end content -->
-                    </div>
-                    <div class="col-lg-7 order-lg-first">
-                        <div class="wrapper mb-30">
-                            <h3 class="title">寄送包裹</h3>
-                            <div class="transportation-form">
-                                <form method="post" action="">
-                                    {% csrf_token %}
-                                    <div class="row row-sm">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="name" placeholder="姓名">
-                                            </div>
+    <section id="transport" class="transportation-section pt-100 pb-70">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="content mb-30">
+                        <div class="section-title">
+                            <span class="sub-title">发送快递 <span></span></span><br>
+                            <h2 class="title">直接提交上门订单</h2>
+                            <p class="text">
+                                在你提交之后会直接使用您的手机号创建账户
+                            </p>
+                            {% if message %}
+                                <div class="wrapper mb-30">
+                                    {% if message.price %}
+                                        <div class="alert alert-success" role="alert">
+                                            {{ message.info }} : {{ message.price }}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="phoneNumber" placeholder="手机号">
-                                            </div>
+                                    {% endif %}
+                                    {% if message.error %}
+                                        <div class="alert alert-danger" role="alert" style="margin-bottom:0;">
+                                            糟糕! {{ message.info }}……{{ message.error }}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="packHeight" placeholder="高度 (CM)">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="packWide" placeholder="宽度 (CM)">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="Weight" placeholder="重量 (KG)">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="deliverPosition" placeholder="发出地址（城市）">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="distinction" placeholder="送至（城市）">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <select class="form-control">
-                                                    <option>空运</option>
-                                                    <option>陆运</option>
-                                                    <option>海运</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="actions-btn">
-                                        <button type="submit" class="btn primary-btn w-100">提交</button>
-                                    </div>
-                                </form>
-                            </div><!-- end transportation-form -->
-                        </div><!-- end wrapper -->
-                    </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div><!-- end content -->
                 </div>
-            </div><!-- end container-fluid -->
-        </section>
-        <!-- end transport section -->
+                <div class="col-lg-7 order-lg-first">
+                    <div class="wrapper mb-30">
+                        <h3 class="title">寄送包裹</h3>
+                        <div class="transportation-form">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row row-sm">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="username" placeholder="发件人"
+                                                   id="username" {% if username %}value="{{ username }}" {% endif %}
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="phone_number"
+                                                   id="phone_number"
+                                                   placeholder="发件人手机号" {% if phone %}
+                                                   value="{{ phone }}"{% endif %} required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="recipient" id="recipient"
+                                                   placeholder="收件人" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="recipient_number"
+                                                   id="recipient_number"
+                                                   placeholder="收件人电话" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="object_name" id="object_name"
+                                                   placeholder="物品名称">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="weight" id="weight"
+                                                   placeholder="重量 (KG)" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select style="margin-bottom:15px;" class="form-control" id="get_company"
+                                                name="get_company">
+                                            {% for company in companies %}
+                                                <option value="{{ company.id }}">{{ company.city }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select style="margin-bottom:15px;" class="form-control" id="get_station"
+                                                    name="get_station">
+                                                {% for station in stations %}
+                                                    <option value="{{ station.id }}"
+                                                            {% if selected_station == station.id %}selected{% endif %}>{{ station.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select style="margin-bottom:15px;" class="form-control"
+                                                    id="deliver_company"
+                                                    name="deliver_company">
+                                                {% for company in companies %}
+                                                    <option value="{{ company.id }}">{{ company.city }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select style="margin-bottom:15px;" class="form-control"
+                                                    id="deliver_station"
+                                                    name="deliver_station">
+                                                {% for station in stations %}
+                                                    <option value="{{ station.id }}"
+                                                            {% if selected_station == station.id %}selected{% endif %}>{{ station.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="actions-btn">
+                                    <button type="submit" class="btn primary-btn w-100">提交</button>
+                                </div>
+                            </form>
+                        </div><!-- end transportation-form -->
+                    </div><!-- end wrapper -->
+                </div>
+            </div>
+        </div><!-- end container-fluid -->
+    </section>
+    <!-- end transport section -->
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+
+            var selected_station = "{{ selected_station }}"; // 假设从后端获取
+
+            function getStations(company) {
+                $.ajax({
+                    url: '/get_stations/',
+                    data: {
+                        'company': company
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var select = $("#get_station");
+                        select.empty();
+                        $.each(data, function (index, value) {
+                            var option = $('<option></option>').attr('value', value.id).text(value.name);
+
+                            // 这里加入逻辑来判断哪个选项应该被选中
+                            if (selected_station == value.id) {
+                                option.attr('selected', 'selected');
+                            }
+
+                            select.append(option);
+                        });
+                    }
+                });
+            }
+
+            var initialCompanyId = $("#get_company").val();
+            if (initialCompanyId !== null && initialCompanyId !== undefined) {
+                getStations(initialCompanyId);
+            }
+
+            $("#get_company").change(function () {
+                var companyId = $(this).val();
+                if (companyId !== null && companyId !== undefined) {
+                    getStations(companyId);
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            var selected_station = "{{ selected_station }}"; // 假设从后端获取
+
+            function getStations(company) {
+                $.ajax({
+                    url: '/get_stations/',
+                    data: {
+                        'company': company
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        var select = $("#deliver_station");
+                        select.empty();
+                        $.each(data, function (index, value) {
+                            var option = $('<option></option>').attr('value', value.id).text(value.name);
+
+                            // 这里加入逻辑来判断哪个选项应该被选中
+                            if (selected_station == value.id) {
+                                option.attr('selected', 'selected');
+                            }
+
+                            select.append(option);
+                        });
+                    }
+                });
+            }
+
+            var initialCompanyId = $("#deliver_company").val();
+            if (initialCompanyId !== null && initialCompanyId !== undefined) {
+                getStations(initialCompanyId);
+            }
+
+            $("#deliver_company").change(function () {
+                var companyId = $(this).val();
+                if (companyId !== null && companyId !== undefined) {
+                    getStations(companyId);
+                }
+            });
+        });
+    </script>
+    <script>
+        // 页面加载时，获取滚动位置并滚动到该位置
+        window.onload = function () {
+            if (sessionStorage.getItem('scrollPosition')) {
+                window.scrollTo(0, sessionStorage.getItem('scrollPosition'));
+            }
+        }
+
+        // 使用 'load' 事件来确保所有页面元素（包括图片）都已加载完毕再恢复滚动位置
+        window.addEventListener('load', function () {
+            // 如果存在保存的滚动位置，稍微延迟后恢复到该位置
+            if (sessionStorage.getItem('scrollPosition')) {
+                setTimeout(function () {
+                    window.scrollTo(0, sessionStorage.getItem('scrollPosition'));
+                }, 1000); // 延迟1000毫秒以确保所有内容都已加载和呈现
+            }
+        });
+
+        // 当用户滚动页面时，保存滚动位置
+        window.addEventListener('scroll', function () {
+            const scrollPosition = window.scrollY;
+
+            // 保存滚动位置到 sessionStorage
+            sessionStorage.setItem('scrollPosition', scrollPosition);
+
+            // 发送滚动位置到后端（如果需要的话）
+            fetch('/save-scroll-position/', {
+            {% csrf_token %}
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({scrollPosition: scrollPosition})
+            });
+        }, false);
+    </script>
 {% endblock %}

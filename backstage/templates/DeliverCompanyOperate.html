@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block title %}
-    综合统计 - 按时间
+    分公司 - 快递接收管理
 {% endblock %}
 
 {% block slider %}
     <!-- Page Sidebar -->
     <div class="page-sidebar">
-        <a class="logo-box" href="statistic.html">
+        <a class="logo-box" href="/backstage/staff/">
             <span>快递后台管理</span>
             <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
             <i class="icon-close" id="sidebar-toggle-button-close"></i>
@@ -19,6 +19,11 @@
                     <li class="active">
                         <a href="/backstage/staff/delivery/">
                             <i class="menu-icon icon-send"></i><span>发货管理</span>
+                        </a>
+                    </li>
+                    <li class="active-page">
+                        <a href="/backstage/staff/company/">
+                            <i class="menu-icon icon-send"></i><span>公司发货管理</span>
                         </a>
                     </li>
                 </ul>
@@ -81,8 +86,8 @@
                         <div class="panel panel-white stats-widget">
                             <div class="panel-body">
                                 <div class="pull-left">
-                                    <span class="stats-number">{{ get_parcel_count }}</span>
-                                    <p class="stats-info">待收快递数</p>
+                                    <span class="stats-number">{{ company_deliver_parcel_count }}</span>
+                                    <p class="stats-info">待发出至目的地公司快递数</p>
                                 </div>
                                 <div class="pull-right">
                                     <i class="icon-person stats-icon"></i>
@@ -94,8 +99,8 @@
                         <div class="panel panel-white stats-widget">
                             <div class="panel-body">
                                 <div class="pull-left">
-                                    <span class="stats-number">{{ deliver_parcel_count }}</span>
-                                    <p class="stats-info">待送快递数</p>
+                                    <span class="stats-number">{{ company_get_parcel_count }}</span>
+                                    <p class="stats-info">正在发往此公司快递数</p>
                                 </div>
                                 <div class="pull-right">
                                     <i class="icon-check_box stats-icon"></i>
@@ -139,7 +144,7 @@
                                                 <td>{{ pack.parcel.Price }}</td>
                                                 <td>
                                                     <a class="btn btn-primary btn-xs"
-                                                       href="/backstage/staff/get_success/{{ pack.parcel.timestamp }}/">接收</a>
+                                                       href="/backstage/staff/send_to_company/{{ pack.parcel.timestamp }}/">发出</a>
                                                     <a class="btn btn-danger btn-xs"
                                                        href="/backstage/staff/send_back/{{ pack.parcel.timestamp }}/"
                                                        onclick="return confirm('确定要退回么?')">退回</a>
@@ -161,7 +166,8 @@
                                             {% if pages_get.has_next %}
                                                 <a class="btn btn-default"
                                                    href="?page={{ pages_get.next_page_number }}">下一页</a>
-                                                <a class="btn btn-default" href="?page={{ pages_get.paginator.num_pages }}">末页 &raquo;</a>
+                                                <a class="btn btn-default"
+                                                   href="?page={{ pages_get.paginator.num_pages }}">末页 &raquo;</a>
                                             {% endif %}
                                         </span>
                                     </div>
@@ -204,14 +210,8 @@
                                                 <td>{{ pack.parcel.user.username }}</td>
                                                 <td>{{ pack.parcel.Price }}</td>
                                                 <td>
-                                                    {% if pack.status == '103'%}
-                                                        <a class="btn btn-primary btn-xs"
-                                                       href="/backstage/staff/deliver_success/{{ pack.parcel.timestamp }}/">开始派送</a>
-                                                    {% endif %}
-                                                    {% if pack.status == '104'%}
-                                                        <a class="btn btn-primary btn-xs"
-                                                       href="/backstage/staff/finish/{{ pack.parcel.timestamp }}/">完成</a>
-                                                    {% endif %}
+                                                    <a class="btn btn-primary btn-xs"
+                                                       href="/backstage/staff/distinction_company_get/{{ pack.parcel.timestamp }}/">接收</a>
                                                     <a class="btn btn-danger btn-xs"
                                                        href="/backstage/staff/send_back/{{ pack.parcel.timestamp }}/"
                                                        onclick="return confirm('确定要退回么?')">退回</a>
@@ -233,7 +233,8 @@
                                             {% if pages_delivery.has_next %}
                                                 <a class="btn btn-default"
                                                    href="?page={{ pages_delivery.next_page_number }}">下一页</a>
-                                                <a class="btn btn-default" href="?page={{ pages_delivery.paginator.num_pages }}">末页 &raquo;</a>
+                                                <a class="btn btn-default"
+                                                   href="?page={{ pages_delivery.paginator.num_pages }}">末页 &raquo;</a>
                                             {% endif %}
                                         </span>
                                     </div>

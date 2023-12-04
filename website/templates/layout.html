@@ -29,11 +29,14 @@
 </head>
 <body>
 <!-- start preloader area -->
-<div id="preloader">
-    <span class="bounce1"></span>
-    <span class="bounce2"></span>
-    <span class="bounce3"></span>
-</div>
+{% if error %}
+{% else %}
+    <div id="preloader">
+        <span class="bounce1"></span>
+        <span class="bounce2"></span>
+        <span class="bounce3"></span>
+    </div>
+{% endif %}
 <!-- end preloader area -->
 
 {% block header %}
@@ -59,7 +62,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="footer-widget">
                         <div class="navbar-brand">
-                            <a href="index.html">
+                            <a href="/">
                                 <h1 style="color: white;">XXX快递</h1>
                             </a>
                         </div>
@@ -99,6 +102,9 @@
 <div class='go-top'><i class='bx bx-upvote'></i></div>
 <!-- end go to top area -->
 <!-- jquery JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>
+
 <script src="../static/js/jquery.min.js"></script>
 <!-- popper JS -->
 <script src="../static/js/popper.min.js"></script>
@@ -124,5 +130,7 @@
 <script src="../static/js/jquery.ajaxchimp.min.js"></script>
 <!-- script JS -->
 <script src="../static/js/script.js"></script>
+{% block js %}
+{% endblock %}
 </body>
 </html>
